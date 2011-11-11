@@ -10,7 +10,7 @@ __version__ = '1.0'
 
 USER_AGENT = '{0}/{1}'.format(__name__, __version__)
 
-GET_BYTES = 200
+GET_BYTES = 10240
 
 
 def _handle_url(url):
