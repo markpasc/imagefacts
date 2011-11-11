@@ -2,7 +2,8 @@
 imagefacts
 ==========
 
-imagefacts discovers the screen dimensions of the commonest image formats from a URL or a bytestring.
+imagefacts discovers the screen dimensions of the commonest image formats from
+a URL or a bytestring.
 
 
 Installation
@@ -36,3 +37,10 @@ You can also use imagefacts from the command line::
    $ python -m imagefacts http://example.com/image
    ('image/png', 400, 476)
    $
+
+
+Contributors
+============
+
+Portions of imagefacts are from the feedparser project by Mark Pilgrim and
+bfg-pages by zutesmog. Thanks!
