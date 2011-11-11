@@ -10,17 +10,19 @@ __version__ = '1.0'
 
 USER_AGENT = '{0}/{1}'.format(__name__, __version__)
 
+GET_BYTES = 200
+
 
 def _handle_url(url):
     urlparts = urlparse.urlsplit(url)
     conn_class = httplib.HTTPSConnection if urlparts.scheme == 'https' else httplib.HTTPConnection
     http = conn_class(urlparts.netloc, timeout=10)
     http.request('GET', url, headers={
-        'Range': 'bytes=0-99',
+        'Range': 'bytes=0-{0}'.format(GET_BYTES - 1),
         'User-Agent': USER_AGENT,
     })
     resp = http.getresponse()
-    resp_bytes = resp.read(100)
+    resp_bytes = resp.read(GET_BYTES)
     resp.close()  # fy, gm
     return imagefacts.open_resource._StringIO(resp_bytes)
 
