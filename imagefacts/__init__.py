@@ -1,5 +1,4 @@
 import httplib
-import sys
 import urlparse
 
 import imagefacts.open_resource
@@ -31,9 +30,3 @@ def facts(url_file_stream_or_string):
     source = imagefacts.open_resource._open_resource(url_file_stream_or_string, _handle_url)
     data = source.read()
     return imagefacts.getimageinfo.getImageInfo(data)
-
-
-if __name__ == '__main__':
-    USER_AGENT = 'imagefacts/{0}'.format(__version__)
-    for arg in sys.argv[1:]:
-        print repr(facts(arg))
