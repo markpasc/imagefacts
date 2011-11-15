@@ -1,5 +1,12 @@
 from distutils.core import setup
 
+
+try:
+    long_description = open('README.rst').read()
+except IOError:
+    long_description = ''
+
+
 setup(
     name='imagefacts',
     version='1.0',
@@ -7,7 +14,7 @@ setup(
     author='Mark Paschal',
     author_email='markpasc@markpasc.org',
     url='https://github.com/markpasc/imagefacts',
-    long_description=open('README.rst').read(),
+    long_description=long_description,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
