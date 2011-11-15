@@ -6,7 +6,7 @@ import imagefacts.getimageinfo
 from imagefacts.getimageinfo import HeaderError, UnidentifiedHeaderError, InsufficientHeaderError
 
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 USER_AGENT = '{0}/{1}'.format(__name__, __version__)
 

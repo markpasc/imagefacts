@@ -9,7 +9,7 @@ except IOError:
 
 setup(
     name='imagefacts',
-    version='1.0',
+    version='1.1',
     description="Find out the screen dimensions of the commonest image formats from a URL or bytestring",
     author='Mark Paschal',
     author_email='markpasc@markpasc.org',

@@ -1,0 +1,12 @@
+1.1 15 Nov 2011
+===============
+
+* Fixed installation of the distribution from PyPI.
+* Converted expected error cases to use consistent custom exceptions.
+* Better documented the `imagefacts.facts()` function.
+
+
+1.0 11 Nov 2011
+===============
+
+Initial release.
