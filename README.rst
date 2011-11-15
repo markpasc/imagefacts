@@ -19,7 +19,7 @@ Install the latest imagefacts from PyPI::
 Usage
 =====
 
-Use the `imagefacts.fact()` function to find an image's dimensions::
+Use the `imagefacts.facts()` function to find an image's dimensions::
 
    >>> import imagefacts
    >>> imagefacts.facts(open('localfile.jpg').read())  # byte string

@@ -3,6 +3,17 @@
 import StringIO
 import struct
 
+
+class HeaderError(Exception):
+    pass
+
+class UnidentifiedHeaderError(HeaderError):
+    pass
+
+class InsufficientHeaderError(HeaderError):
+    pass
+
+
 def getImageInfo(data):
     data = str(data)
     size = len(data)
@@ -43,21 +54,25 @@ def getImageInfo(data):
         jpeg.read(2)
         b = jpeg.read(1)
         try:
+            h, w = None, None
             while (b and ord(b) != 0xDA):
-                while (ord(b) != 0xFF): b = jpeg.read(1)
-                while (ord(b) == 0xFF): b = jpeg.read(1)
-                if (ord(b) >= 0xC0 and ord(b) <= 0xC3):
+                while (b and ord(b) != 0xFF): b = jpeg.read(1)
+                while (b and ord(b) == 0xFF): b = jpeg.read(1)
+                if (b and ord(b) >= 0xC0 and ord(b) <= 0xC3):
                     jpeg.read(3)
                     h, w = struct.unpack(">HH", jpeg.read(4))
                     break
-                else:
+                elif b:
                     jpeg.read(int(struct.unpack(">H", jpeg.read(2))[0])-2)
                 b = jpeg.read(1)
+            if w is None:
+                raise InsufficientHeaderError()
             width = int(w)
             height = int(h)
-        except struct.error:
-            pass
-        except ValueError:
-            pass
+        except (struct.error, ValueError):
+            raise InsufficientHeaderError()
+
+    else:
+        raise UnidentifiedHeaderError()
 
     return content_type, width, height
